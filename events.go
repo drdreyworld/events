@@ -43,3 +43,10 @@ func (e *Events) Publish(event Event) {
 		e.subscribes[event.GetID()][id].Notify(event)
 	}
 }
+
+func (e *Events) CreateAndPublish(eventId string, eventData interface{}) {
+	e.Publish(&DefaultEvent{
+		eventId:   eventId,
+		eventData: eventData,
+	})
+}
